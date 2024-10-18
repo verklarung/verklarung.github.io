@@ -10,7 +10,10 @@ div{
 }
 .navigation{
     color: antiquewhite;
+    font-weight: bold;
 }
 .publications{
+    font-size: 16px;
     color: darkred;
+    font-weight: bolder;
 }
