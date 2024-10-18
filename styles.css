@@ -8,9 +8,15 @@ p{
 div{
     color: antiquewhite;
 }
+.navBar{
+    text-align: center;
+}
 .navigation{
+    padding: 10px;
+    text-align: center;
     color: antiquewhite;
     font-weight: bold;
+    justify-content: center;
 }
 .publications{
     font-size: 16px;
