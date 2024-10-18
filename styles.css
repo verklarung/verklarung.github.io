@@ -1,16 +1,15 @@
 *{
     background-color: black;
+}
+p{
     color: rgb(63, 174, 19);
 }
 div{
-    color: darkred;
-}
-
-.header{
-
     color: antiquewhite;
 }
-#publications,
-#sneeds{
-    background-color: aliceblue;
+.navigation{
+    color: antiquewhite;
+}
+.publications{
+    color: darkred;
 }
