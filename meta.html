@@ -20,8 +20,10 @@
     <!-- =========================
          Background Grid & Scanline Overlay
          ========================= -->
-    <div class="fixed top-0 left-0 right-0 h-full w-full bg-grid-blue-500/[0.03] -z-10 [mask-image:linear-gradient(to_bottom,white_2%,transparent_80%)]"></div>
     <div class="scanline-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="fixed inset-0 border-2 border-[var(--border-color)] m-4 pointer-events-none"></div>
+
 
     <!-- =========================
          Decorative SVG Symbols
@@ -70,12 +72,12 @@
                      Artist Info Section
                      ========================= -->
                 <section class="md:col-span-2 flex flex-col justify-center">
-                    <div class="relative border-2 border-solid border-[var(--primary-color)] p-6 space-y-4 text-sm bg-[var(--background-dark)]/80 backdrop-blur-sm">
+                    <div class="relative border-2 border-solid border-[var(--primary-color)] p-6 space-y-4 text-sm ">
                         <div class="corner-decal top-left"></div>
                         <div class="corner-decal top-right"></div>
                         <div class="corner-decal bottom-left"></div>
                         <div class="corner-decal bottom-right"></div>
-                        <h1 class="font-bold text-xl uppercase tracking-widest text-glow">// Artist_Meta</h1>
+                        <h1 class="font-bold text-xl uppercase tracking-widest ">// Artist_Meta</h1>
                         <p class="text-xs text-[var(--primary-color)]/70">// System Identity & Origins</p>
                         <div class="w-full h-px bg-[var(--primary-color)]/30 my-3"></div>
                         <div class="space-y-4 text-sm leading-relaxed text-[var(--primary-color)]/90">
@@ -92,7 +94,7 @@
                      Contact Form Section
                      ========================= -->
                 <section class="md:col-span-3 flex flex-col justify-center">
-                    <div class="relative border-2 border-solid border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80 backdrop-blur-sm">
+                    <div class="relative border-2 border-solid border-[var(--primary-color)] p-6 ">
                         <div class="corner-decal top-left"></div>
                         <div class="corner-decal top-right"></div>
                         <div class="corner-decal bottom-left"></div>
@@ -102,7 +104,7 @@
                         <form class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <input type="text" placeholder="//CALLSIGN" required/>
-                                <input type="email" placeholder="//GRID_ADDRESS" required/>
+                                <input type="email" placeholder="//ADDRESS" required/>
                             </div>
                             <div>
                                 <textarea rows="5" placeholder="//MESSAGE_PAYLOAD" required></textarea>
