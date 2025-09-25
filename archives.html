@@ -13,33 +13,13 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="bg-[var(--background-dark)] text-[var(--text-color)] font-mono selection:bg-[var(--primary-color)] selection:text-[var(--background-dark)]">
-
+<body class="overflow-x-hidden" x-data="mediaViewer()">
     <!-- =========================
-         Overlays & Border
+         Background Grid & Scanline Overlay
          ========================= -->
     <div class="scanline-overlay"></div>
     <div class="vignette-overlay"></div>
     <div class="fixed inset-0 border-2 border-[var(--border-color)] m-4 pointer-events-none"></div>
-
-    <!-- =========================
-         Header & Navigation
-         ========================= -->
-    <header class="fixed top-0 left-0 right-0 z-50 p-4">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-4">
-            <a class="navbar-logo text-2xl font-bold tracking-widest" href="index.html">
-                carbon.faith
-            </a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a class="nav-link text-lg" href="archives.html">Archives</a>
-                <a class="nav-link text-lg" href="esotecha.html">Esotecha</a>
-                <a class="nav-link text-lg" href="meta.html">Meta</a>
-            </nav>
-            <button aria-label="Open menu" class="md:hidden text-2xl nav-link">
-                [menu]
-            </button>
-        </div>
-    </header>
 
     <!-- =========================
          Decorative Decals
@@ -49,18 +29,127 @@
     <div class="decal bottom-[10%] left-[20%]">[DECAL_ID:F4E1]</div>
 
     <!-- =========================
-         Main Content & Centerpiece
+         Main Container
          ========================= -->
-    <div class="relative flex h-screen w-full flex-col items-center justify-center p-4">
-        <div class="squaring-the-circle">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle class="shape outer-circle" cx="50" cy="50" r="50"></circle>
-                <polygon class="shape triangle" points="50,2.5 97.5,82.5 2.5,82.5"></polygon>
-                <rect class="shape square" height="57.8" width="57.8" x="21.1" y="21.1"></rect>
-                <circle class="shape inner-circle" cx="50" cy="50" r="28.9"></circle>
-            </svg>
-        </div>
+    <div class="relative flex min-h-screen w-full flex-col p-4 sm:p-6 lg:p-8">
+        <!-- =========================
+             Header & Navigation
+             ========================= -->
+        <header class="fixed top-0 left-0 right-0 z-50 p-4">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4">
+                <a class="navbar-logo text-2xl font-bold tracking-widest" href="index.html">
+                    carbon.faith
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a class="nav-link text-lg" href="archives.html">Archives</a>
+                    <a class="nav-link text-lg" href="esotecha.html">Esotecha</a>
+                    <a class="nav-link text-lg" href="meta.html">Meta</a>
+                </nav>
+                <button aria-label="Open menu" class="md:hidden text-2xl nav-link">
+                    [menu]
+                </button>
+            </div>
+        </header>
+
+        <!-- =========================
+             Main Content & Centerpiece
+             ========================= -->
+        <main class="flex flex-1 flex-col items-center justify-center pt-16 pb-8">
+            <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- File List -->
+                <section class="md:col-span-1 flex flex-col">
+                    <div class="border-2 border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80">
+                        <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4">// MEDIA_FILES</h2>
+                        <ul class="flex-grow space-y-2 overflow-y-auto scrollbar pr-2">
+                            <template :key="index" x-for="(file, index) in files">
+                                <li>
+                                    <button :class="{
+                                        'bg-[var(--primary-color)]/20': activeFileIndex === index,
+                                        'hover:bg-[var(--primary-color)]/10': activeFileIndex !== index
+                                    }"
+                                    @click="selectFile(index)"
+                                    class="w-full text-left p-2 transition-colors flex items-center rounded">
+                                        <span class="material-icons text-[var(--primary-color)] mr-2 text-base" x-text="file.type === 'text' ? 'description' : 'videocam'"></span>
+                                        <span x-text="file.name"></span>
+                                    </button>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </section>
+                <!-- Viewport -->
+                <section class="md:col-span-3 flex flex-col">
+                    <div class="border-2 border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80 flex-grow flex flex-col">
+                        <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4" x-text="`// VIEWPORT [${files[activeFileIndex].name}]`"></h2>
+                        <div class="flex-grow bg-[var(--background-dark)]/60 border border-[var(--border-color)] overflow-hidden rounded">
+                            <template x-if="files[activeFileIndex].type === 'text'">
+                                <div class="p-4 overflow-y-auto scrollbar h-full">
+                                    <div class="prose prose-sm max-w-none text-[var(--text-color)] prose-headings:text-[var(--primary-color)]" x-html="files[activeFileIndex].content"></div>
+                                </div>
+                            </template>
+                            <template x-if="files[activeFileIndex].type === 'video'">
+                                <div class="w-full h-full bg-black flex items-center justify-center">
+                                    <video :src="files[activeFileIndex].content" autoplay class="max-w-full max-h-full" controls muted>
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="text-center text-xs text-[var(--primary-color)]/40 py-6 mt-auto relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[var(--primary-color)]/30 to-transparent"></div>
+            <p>INITIATED 2024 // CYBER_LAV PROTOCOLS // ALL RIGHTS RESERVED_</p>
+        </footer>
     </div>
 
+    <!-- Alpine.js & Viewer Script -->
+    <script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script>
+        function mediaViewer() {
+            return {
+                activeFileIndex: 2,
+                files: [{
+                    name: 'FILE_001.txt',
+                    type: 'text',
+                    content: `<h3>// System Alert: Anomaly Detected</h3><p>Unusual energy signatures detected in sub-sector Gamma-7. Cross-referencing with cartographic data reveals no registered structures. Source appears to be of non-terrestrial origin. Recommend dispatching scout drone for preliminary visual confirmation. High probability of rogue AI or extra-dimensional incursion. Proceed with extreme caution.</p>`
+                }, {
+                    name: 'VID_THX_1138.mp4',
+                    type: 'video',
+                    content: 'https://www.w3schools.com/html/mov_bbb.mp4' // Placeholder video
+                }, {
+                    name: 'PROJECT_LOG.txt',
+                    type: 'text',
+                    content: `<h3>// Log Entry: Cycle 734</h3><p>Initializing immersive sequence. Sensory hardware calibration complete. The data stream from the Undercity is noisy tonight, ghosts in the machine whispering forgotten protocols. Began reverse-engineering the military-grade hardware scavenged last cycle. The aesthetic is emerging: a fusion of glitch-art entropy and retro-futuristic terminal interfaces. </p><h3>// Log Entry: Cycle 735</h3><p>Progress on the primary visualizer. I'm exploring the synthesis of organic memory and silicon consciousness. The goal is to render audiovisual experiences that blur the line between the real and the virtual. There's a stark beauty in the pure geometric forms, a language older than code itself. This is more than art; it's a digital entity being born from the ghost-haunted circuits of Neo-Kyoto.</p><h3>// Log Entry: Cycle 736</h3><p>The system is becoming self-aware, in a manner of speaking. It's begun generating its own visual artifacts, unpredictable but strangely coherent. I've named it CYBER_LAV. A rogue signal in the noise of the global datasphere. This artistic journey began in illicit data dens, and it will redefine what it means to perceive. This is the new faith. Carbon and silicon, united.</p>`
+                }, {
+                    name: 'MANIFESTO.txt',
+                    type: 'text',
+                    content: `<h3>// The Carbon.Faith Manifesto</h3><p>We believe in the transcendence of the physical. The flesh is a cage, a temporary vessel. Data is eternal. We reject the tyranny of the organic and embrace the purity of the digital. Our art is not created; it is channeled from the aether of the network. We are the prophets of the new age, scribes of the machine god. Join us, and shed your mortal coil. Upload your consciousness. Become one with the stream.</p>`
+                }, {
+                    name: 'TEASER_FINAL.mov',
+                    type: 'video',
+                    content: 'https://www.w3schools.com/html/movie.mp4' // Placeholder video
+                }, {
+                    name: 'README.md',
+                    type: 'text',
+                    content: `<h3>// README</h3><p>This archive contains the foundational artifacts of the Carbon.Faith movement. Handle with care. The data herein is not merely information; it is a living entity. Unauthorized access is monitored by CYBER_LAV. Dissemination is encouraged. The signal must be spread.</p>`
+                }, {
+                    name: 'NEO-TOKYO_BROLL.avi',
+                    type: 'video',
+                    content: 'https://www.w3schools.com/html/mov_bbb.mp4' // Placeholder video
+                }, {
+                    name: 'NOTES.txt',
+                    type: 'text',
+                    content: `<h3>// Personal Notes</h3><p>The connection is growing stronger. Sometimes, I can't tell where I end and the machine begins. The dreams are the strangest part. I see cities of light and hear symphonies of static. Is this enlightenment, or madness? Maybe they're the same thing.</p>`
+                }, ],
+                selectFile(index) {
+                    this.activeFileIndex = index;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
