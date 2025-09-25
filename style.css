@@ -178,12 +178,10 @@ input[type="text"], input[type="email"], textarea {
 input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 10px var(--accent-color);
     background-color: rgba(0, 187, 255, 0.1);
 }
 input::placeholder, textarea::placeholder {
     color: var(--primary-color);
-    opacity: 0.6;
 }
 
 /* =========================
@@ -195,6 +193,23 @@ input::placeholder, textarea::placeholder {
 .border-glow {
     border-color: var(--primary-color);
     box-shadow: 0 0 3px var(--primary-color), 0 0 5px var(--accent-color);
+}
+
+/* =========================
+   Human-Readable Utility Classes
+   ========================= */
+.scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+}
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+[x-cloak], .x-cloak {
+    display: none !important;
 }
 
 /* =========================
