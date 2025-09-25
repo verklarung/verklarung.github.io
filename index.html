@@ -1,30 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Faith</title>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>carbon.faith//init</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #00F0FF;
+            --secondary-color: #FF00FF;
+            --background-dark: #05050A;
+            --text-color: #E0E0E0;
+            --border-color: rgba(0, 240, 255, 0.2);
+        }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        .border-deco {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+            color: var(--primary-color);
+            opacity: 0.5;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+        .top-left { top: 1rem; left: 1.5rem; }
+        .top-right { top: 1rem; right: 1.5rem; }
+        .bottom-left { bottom: 1rem; left: 1.5rem; }
+        .bottom-right { bottom: 1rem; right: 1.5rem; }
+        .squaring-the-circle {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vmin;
+            height: 85vmin;
+            max-width: 700px;
+            max-height: 700px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
+            animation: rotate 120s linear infinite;
+        }
+        .squaring-the-circle svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+        .squaring-the-circle .shape {
+            fill: none;
+            stroke: var(--primary-color);
+            stroke-width: 0.5;
+            vector-effect: non-scaling-stroke;
+            transform-origin: center;
+        }
+        .squaring-the-circle .outer-circle { animation: rotate 120s linear infinite reverse; }
+        .squaring-the-circle .triangle { animation: rotate-counter 120s linear infinite; }
+        .squaring-the-circle .square { animation: rotate 80s linear infinite; }
+        .scanline-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background: linear-gradient(rgba(10, 10, 15, 0) 50%, rgba(10, 10, 15, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            z-index: 9999;
+            animation: scanline-flicker 15s linear infinite;
+        }
+        .vignette-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            box-shadow: inset 0 0 20vw rgba(5,5,10,0.95);
+            z-index: 9998;
+        }
+        .enter-button {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
+            box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.3), 0 0 8px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .enter-button:hover {
+            background-color: var(--primary-color);
+            color: var(--background-dark);
+            text-shadow: none;
+            box-shadow: 0 0 25px var(--primary-color);
+        }
+        .decal {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.4;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+        .nav-link {
+            font-family: 'Major Mono Display', monospace;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            text-shadow: 0 0 15px var(--primary-color), 0 0 25px var(--primary-color);
+        }
+        .navbar-logo {
+            font-family: 'Major Mono Display', monospace;
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+        @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes rotate-counter { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+        @keyframes scanline-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            75% { background-position: 0 50vh; }
+        }
+    </style>
 </head>
-<body>
-    <div class="navBar">
-        <a class="navButton" href="index.html">Shell</a>
-        <a class="navButton" href="corpus.html">Corpus</a>
-        <a class="navButton" href="esotecha.html">Esotecha</a>
-        <a class="navButton" href="meta.html">Meta</a><br>
-    </div>
-    <div>
-    <p>This is a fledgeling project of a writer who wishes to refresh his memory of coding and eventually learn react.
-        <br>Below is an image generated in Midjourney which represents an entity in a novel I'm writing.
-        <div>
-            <ul class="publications">
-                <li>Infohazard</li>
-                <li>Metamorphic</li>
-                <li>Breath</li>
-            </ul>
-        </div>
-    </p>
-    </div>
-<img src="./images/cube.png"    width="80%" height="rel" alt="A colossal black cube">
-</body>
-</html>
+<body class="bg-[var(--background-dark)] text-[var(--text-color)] font-mono selection:bg-[var(--primary-color)] selection:text-[var(--background-dark)]">
+<div class="scanline-overlay"></div>
+<div class="vignette-overlay"></div>
+<div class="fixed inset-0 border-2 border-[var(--border-color)] m-4 pointer-events-none"></div>
+<header class="fixed top-0 left-0 right-0 z-50 p-4">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-4">
+<a class="navbar-logo text-2xl font-bold tracking-widest" href="#">carbon.faith</a>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="nav-link text-lg" href="#">works</a>
+<a class="nav-link text-lg" href="#">about</a>
+<a class="nav-link text-lg" href="#">contact</a>
+</nav>
+<button aria-label="Open menu" class="md:hidden text-2xl nav-link">
+            [menu]
+        </button>
+</div>
+</header>
+<div class="decal top-[15%] left-[10%]">[DECAL_ID:A7B3]</div>
+<div class="decal top-[60%] right-[12%] rotate-90">[DECAL_ID:C9D2]</div>
+<div class="decal bottom-[10%] left-[20%]">[DECAL_ID:F4E1]</div>
+<div class="relative flex h-screen w-full flex-col items-center justify-center p-4">
+<div class="squaring-the-circle">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle class="shape outer-circle" cx="50" cy="50" r="50"></circle>
+<polygon class="shape triangle" points="50,2.5 97.5,82.5 2.5,82.5"></polygon>
+<rect class="shape square" height="57.8" width="57.8" x="21.1" y="21.1"></rect>
+<circle class="shape inner-circle" cx="50" cy="50" r="28.9"></circle>
+</svg>
+</div>
+<main class="relative z-10 flex flex-col items-center justify-center text-center">
+<h1 class="text-4xl md:text-5xl font-bold uppercase tracking-[0.2em] mb-4 text-shadow" style="font-family: 'Roboto Mono', monospace; text-shadow: 0 0 10px var(--primary-color);">
+                carbon.faith
+            </h1>
+<a class="enter-button border-2 px-8 py-3 text-lg font-bold uppercase tracking-[0.3em]" href="#">
+                Enter Archive
+            </a>
+</main>
+</div>
+
+</body></html>
