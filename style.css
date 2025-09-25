@@ -1,0 +1,219 @@
+/* =========================
+   CSS Variables
+   ========================= */
+:root {
+    --primary-color: #00F0FF;
+    --secondary-color: #FF00FF;
+    --background-dark: #05050A;
+    --text-color: #E0E0E0;
+    --border-color: rgba(0, 240, 255, 0.2);
+}
+
+/* =========================
+   Base Styles
+   ========================= */
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+/* =========================
+   Border Decoration Corners
+   ========================= */
+.border-deco {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    color: var(--primary-color);
+    opacity: 0.5;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+.top-left { top: 1rem; left: 1.5rem; }
+.top-right { top: 1rem; right: 1.5rem; }
+.bottom-left { bottom: 1rem; left: 1.5rem; }
+.bottom-right { bottom: 1rem; right: 1.5rem; }
+
+/* =========================
+   Squaring the Circle Animation
+   ========================= */
+.squaring-the-circle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85vmin;
+    height: 85vmin;
+    max-width: 700px;
+    max-height: 700px;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
+    animation: rotate 120s linear infinite;
+}
+.squaring-the-circle svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+.squaring-the-circle .shape {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 0.5;
+    vector-effect: non-scaling-stroke;
+    transform-origin: center;
+}
+.squaring-the-circle .outer-circle { animation: rotate 120s linear infinite reverse; }
+.squaring-the-circle .triangle { animation: rotate-counter 120s linear infinite; }
+.squaring-the-circle .square { animation: rotate 80s linear infinite; }
+
+/* =========================
+   Scanline Overlay
+   ========================= */
+.scanline-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    background: linear-gradient(rgba(10, 10, 15, 0) 50%, rgba(10, 10, 15, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    z-index: 9999;
+    animation: scanline-flicker 15s linear infinite;
+}
+
+/* =========================
+   Vignette Overlay
+   ========================= */
+.vignette-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    box-shadow: inset 0 0 20vw rgba(5,5,10,0.95);
+    z-index: 9998;
+}
+
+/* =========================
+   Enter Button Styles
+   ========================= */
+.enter-button {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-color);
+    box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.3), 0 0 8px rgba(0, 240, 255, 0.3);
+    transition: all 0.3s ease;
+}
+.enter-button:hover {
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+    text-shadow: none;
+    box-shadow: 0 0 25px var(--primary-color);
+}
+
+/* =========================
+   Decal Styles
+   ========================= */
+.decal {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.4;
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+/* =========================
+   Navigation Styles
+   ========================= */
+.nav-link {
+    font-family: 'Major Mono Display', monospace;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color);
+    transition: all 0.3s ease;
+}
+.nav-link:hover {
+    text-shadow: 0 0 15px var(--primary-color), 0 0 25px var(--primary-color);
+}
+.navbar-logo {
+    font-family: 'Major Mono Display', monospace;
+    color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-color);
+}
+
+/* =========================
+   Corner Decals for meta.html
+   ========================= */
+.corner-decal {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-style: solid;
+    border-color: var(--primary-color);
+}
+.corner-decal.top-left    { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.corner-decal.top-right   { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.corner-decal.bottom-left { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.corner-decal.bottom-right{ bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+/* =========================
+   Symbol Container for meta.html
+   ========================= */
+.symbol-container svg {
+    stroke: var(--primary-color);
+    stroke-width: 0.25;
+    fill: none;
+    filter: drop-shadow(0 0 2px var(--primary-color)) drop-shadow(0 0 4px var(--accent-color));
+    opacity: 0.3;
+    position: absolute;
+}
+
+/* =========================
+   Form Fields for meta.html
+   ========================= */
+input[type="text"], input[type="email"], textarea {
+    background-color: rgba(0, 187, 255, 0.05);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    background-color: rgba(0, 187, 255, 0.1);
+}
+input::placeholder, textarea::placeholder {
+    color: var(--primary-color);
+    opacity: 0.6;
+}
+
+/* =========================
+   Glow Effects for meta.html
+   ========================= */
+.text-glow {
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--accent-color);
+}
+.border-glow {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 3px var(--primary-color), 0 0 5px var(--accent-color);
+}
+
+/* =========================
+   Keyframes
+   ========================= */
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes rotate-counter {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+@keyframes scanline-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+    75% { background-position: 0 50vh; }
+}
+@keyframes scan {
+    from { background-position: 0 0; }
+    to { background-position: 0 -400px; }
+}
