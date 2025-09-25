@@ -1,102 +1,17 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Meta</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style type="text/tailwindcss">
-        :root {
-            --primary-color: #00F0FF;
-            --secondary-color: #FF00FF;
-            --background-dark: #05050A;
-            --text-color: #E0E0E0;
-            --border-color: rgba(0, 240, 255, 0.2);
-        }
-        body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: var(--background-dark);
-            color: var(--text-color);
-            overflow: hidden;
-        }
-        .border-deco {
-            position: fixed;
-            z-index: 1000;
-            pointer-events: none;
-            color: var(--primary-color);
-            opacity: 0.5;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-        }
-        .top-left { top: 1rem; left: 1.5rem; }
-        .top-right { top: 1rem; right: 1.5rem; }
-        .bottom-left { bottom: 1rem; left: 1.5rem; }
-        .bottom-right { bottom: 1rem; right: 1.5rem; }
-        .squaring-the-circle {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85vmin;
-            height: 85vmin;
-            max-width: 700px;
-            max-height: 700px;
-            pointer-events: none;
-            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
-            animation: rotate 120s linear infinite;
-        }
-        .squaring-the-circle svg {
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-        }
-        .squaring-the-circle .shape {
-            fill: none;
-            stroke: var(--primary-color);
-            stroke-width: 0.5;
-            vector-effect: non-scaling-stroke;
-            transform-origin: center;
-        }
-        .squaring-the-circle .outer-circle { animation: rotate 120s linear infinite reverse; }
-        .squaring-the-circle .triangle { animation: rotate-counter 120s linear infinite; }
-        .squaring-the-circle .square { animation: rotate 80s linear infinite; }
-        .scanline-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            background: linear-gradient(rgba(10, 10, 15, 0) 50%, rgba(10, 10, 15, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.06));
-            background-size: 100% 2px, 3px 100%;
-            z-index: 9999;
-            animation: scanline-flicker 15s linear infinite;
-        }
-        .vignette-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            box-shadow: inset 0 0 20vw rgba(5,5,10,0.95);
-            z-index: 9998;
-        }
-        .enter-button {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            text-shadow: 0 0 8px var(--primary-color);
-            box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.3), 0 0 8px rgba(0, 240, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .enter-button:hover {
-            background-color: var(--primary-color);
-            color: var(--background-dark);
-            text-shadow: none;
-            box-shadow: 0 0 25px var(--primary-color);
-        }
-        .decal {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.4;
-            color: var(--primary-color);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-        }
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CYBER_AV - About</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&amp;family=Roboto+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Custom Styles -->
+    <style type="text/tailwindcss">
         .nav-link {
             font-family: 'Major Mono Display', monospace;
             color: var(--primary-color);
@@ -111,44 +26,159 @@
             color: var(--primary-color);
             text-shadow: 0 0 8px var(--primary-color);
         }
-        @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-        @keyframes rotate-counter { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-        @keyframes scanline-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-            75% { background-position: 0 50vh; }
+        :root {
+            --primary-color: #00F0FF;
+            --secondary-color: #FF00FF;
+            --background-dark: #05050A;
+            --text-color: #E0E0E0;
+            --border-color: rgba(0, 240, 255, 0.2);
+        }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        .text-glow {
+            text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--accent-color);
+        }
+        .border-glow {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 3px var(--primary-color), 0 0 5px var(--accent-color);
+        }
+
+        .scanline-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background: linear-gradient(rgba(10, 10, 15, 0) 50%, rgba(10, 10, 15, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            z-index: 9999;
+            animation: scanline-flicker 15s linear infinite;
+        }
+
+        @keyframes scan {
+            from { background-position: 0 0; }
+            to { background-position: 0 -400px; }
+        }
+        /* Corner decals */
+        .corner-decal {
+            position: absolute;
+            width: 20px; height: 20px;
+            border-style: solid;
+            border-color: var(--primary-color);
+        }
+        .corner-decal.top-left    { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+        .corner-decal.top-right   { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+        .corner-decal.bottom-left { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+        .corner-decal.bottom-right{ bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+        /* SVG symbol styling */
+        .symbol-container svg {
+            stroke: var(--primary-color);
+            stroke-width: 0.25;
+            fill: none;
+            filter: drop-shadow(0 0 2px var(--primary-color)) drop-shadow(0 0 4px var(--accent-color));
+            opacity: 0.3;
+            position: absolute;
+        }
+        /* Form fields */
+        input[type="text"], input[type="email"], textarea {
+            background-color: rgba(0, 187, 255, 0.05);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+            background-color: rgba(0, 187, 255, 0.1);
+        }
+        input::placeholder, textarea::placeholder {
+            color: var(--primary-color);
+            opacity: 0.6;
         }
     </style>
 </head>
-<body class="bg-[var(--background-dark)] text-[var(--text-color)] font-mono selection:bg-[var(--primary-color)] selection:text-[var(--background-dark)]">
-<div class="scanline-overlay"></div>
-<div class="vignette-overlay"></div>
-<div class="fixed inset-0 border-2 border-[var(--border-color)] m-4 pointer-events-none"></div>
-<header class="fixed top-0 left-0 right-0 z-50 p-4">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-4">
-<a class="navbar-logo text-2xl font-bold tracking-widest" href="index.html">carbon.faith</a>
-<nav class="hidden md:flex items-center space-x-8">
-<a class="nav-link text-lg" href="archives.html">Archives</a>
-<a class="nav-link text-lg" href="esotecha.html">Esotecha</a>
-<a class="nav-link text-lg" href="meta.html">Meta</a>
-</nav>
-<button aria-label="Open menu" class="md:hidden text-2xl nav-link">
-            [menu]
-        </button>
-</div>
-</header>
-<div class="decal top-[15%] left-[10%]">[DECAL_ID:A7B3]</div>
-<div class="decal top-[60%] right-[12%] rotate-90">[DECAL_ID:C9D2]</div>
-<div class="decal bottom-[10%] left-[20%]">[DECAL_ID:F4E1]</div>
-<div class="relative flex h-screen w-full flex-col items-center justify-center p-4">
-<div class="squaring-the-circle">
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-<circle class="shape outer-circle" cx="50" cy="50" r="50"></circle>
-<polygon class="shape triangle" points="50,2.5 97.5,82.5 2.5,82.5"></polygon>
-<rect class="shape square" height="57.8" width="57.8" x="21.1" y="21.1"></rect>
-<circle class="shape inner-circle" cx="50" cy="50" r="28.9"></circle>
-</svg>
-</div>
-</div>
-
-</body></html>
+<body class="overflow-x-hidden">
+    <!-- Background grid and scanline -->
+    <div class="fixed top-0 left-0 right-0 h-full w-full bg-grid-blue-500/[0.03] -z-10 [mask-image:linear-gradient(to_bottom,white_2%,transparent_80%)]"></div>
+    <div class="scanline-overlay"></div>
+    <!-- Decorative SVG symbols -->
+    <div class="absolute top-0 left-0 w-full h-full -z-20 overflow-hidden symbol-container">
+        <svg class="w-[30vw] h-[30vw] top-[5%] left-[-10%]" viewBox="0 0 100 100"><polygon points="50,1 99,99 1,99"/></svg>
+        <svg class="w-[40vw] h-[40vw] top-[40%] right-[-15%]" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49"/></svg>
+        <svg class="w-[25vw] h-[25vw] bottom-[5%] left-[10%]" viewBox="0 0 100 100"><rect x="1" y="1" width="98" height="98"/></svg>
+    </div>
+    <!-- Main container -->
+    <div class="relative flex min-h-screen w-full flex-col p-4 sm:p-6 lg:p-8">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-50 p-4">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4">
+            <a class="navbar-logo text-2xl font-bold tracking-widest" href="index.html">carbon.faith</a>
+            <nav class="hidden md:flex items-center space-x-8">
+            <a class="nav-link text-lg" href="archives.html">Archives</a>
+            <a class="nav-link text-lg" href="esotecha.html">Esotecha</a>
+            <a class="nav-link text-lg" href="meta.html">Meta</a>
+            </nav>
+            <button aria-label="Open menu" class="md:hidden text-2xl nav-link">
+                        [menu]
+                    </button>
+            </div>
+            </header>
+        <!-- Main content -->
+        <main class="flex flex-1 flex-col items-center justify-center pt-16 pb-8">
+            <div class="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+                <!-- Artist Info -->
+                <section class="md:col-span-2 flex flex-col justify-center">
+                    <div class="relative border-2 border-solid border-[var(--primary-color)] p-6 space-y-4 text-sm bg-[var(--background-dark)]/80 backdrop-blur-sm">
+                        <div class="corner-decal top-left"></div>
+                        <div class="corner-decal top-right"></div>
+                        <div class="corner-decal bottom-left"></div>
+                        <div class="corner-decal bottom-right"></div>
+                        <h1 class="font-bold text-xl uppercase tracking-widest text-glow">// Artist_Meta</h1>
+                        <p class="text-xs text-[var(--primary-color)]/70">// System Identity & Origins</p>
+                        <div class="w-full h-px bg-[var(--primary-color)]/30 my-3"></div>
+                        <div class="space-y-4 text-sm leading-relaxed text-[var(--primary-color)]/90">
+                            <p>CYBER_AV is a rogue signal in the noise of the global datasphere, a digital entity born from the ghost-haunted circuits of Neo-Kyoto. My work explores the synthesis of organic memory and silicon consciousness, rendering audiovisual experiences that blur the line between the real and the virtual.</p>
+                            <p>My artistic journey began in the illicit data dens of the Undercity, reverse-engineering forgotten military-grade sensory hardware to create immersive art. This background informs my aesthetic: a fusion of glitch-art entropy, retro-futuristic terminal interfaces, and the stark beauty of pure geometric forms.</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Contact Form -->
+                <section class="md:col-span-3 flex flex-col justify-center">
+                    <div class="relative border-2 border-solid border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80 backdrop-blur-sm">
+                        <div class="corner-decal top-left"></div>
+                        <div class="corner-decal top-right"></div>
+                        <div class="corner-decal bottom-left"></div>
+                        <div class="corner-decal bottom-right"></div>
+                        <h2 class="text-xl font-bold uppercase tracking-widest text-glow mb-2">[ Open_Channel ]</h2>
+                        <p class="text-xs uppercase tracking-[0.15em] text-[var(--primary-color)]/70 mb-6">// Initiate Secure Contact Protocol</p>
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="//CALLSIGN" required/>
+                                <input type="email" placeholder="//GRID_ADDRESS" required/>
+                            </div>
+                            <div>
+                                <textarea rows="5" placeholder="//MESSAGE_PAYLOAD" required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="block w-full p-3 border-2 border-[var(--primary-color)] text-center hover:bg-[var(--primary-color)] hover:text-[var(--background-dark)] transition-all font-bold tracking-widest text-sm border-glow">
+                                    &gt;&gt; TRANSMIT &lt;&lt;
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="text-center text-xs text-[var(--primary-color)]/40 py-6 mt-auto relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[var(--primary-color)]/30 to-transparent"></div>
+            <p>INITIATED 2024 // CYBER_AV_PROTOCOLS // ALL RIGHTS RESERVED_</p>
+        </footer>
+    </div>
+</body>
+</html>
