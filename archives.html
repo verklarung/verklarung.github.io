@@ -94,6 +94,17 @@
                                     </video>
                                 </div>
                             </template>
+                            <template x-if="files[activeFileIndex].type === 'youtube'">
+                                <div class="w-full h-full flex items-center justify-center bg-black">
+                                    <iframe
+                                        :src="files[activeFileIndex].content"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        class="w-full h-[60vh] max-w-full rounded"
+                                    ></iframe>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </section>
@@ -120,9 +131,9 @@
                 },
                 
                 {
-                    name: 'point mandala.mp4',
-                    type: 'video',
-                    content: 'https://drive.google.com/uc?export=download&id=1VuSRGvAIm2-c7vBOuEt0ACcWBqTmKyb2' // Placeholder video
+                    name: 'YouTube: point mandala',
+                    type: 'youtube',
+                    content: 'https://www.youtube.com/embed/83jYNWLWg60'
                 }, 
                  
                 
