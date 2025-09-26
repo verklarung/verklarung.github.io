@@ -105,6 +105,13 @@
                                     ></iframe>
                                 </div>
                             </template>
+                            <template x-if="files[activeFileIndex].type === 'gdrive'">
+                                <iframe class="w-full h-64"
+                                        :src="files[activeFileIndex].content"
+                                        frameborder="0"
+                                        allow="autoplay">
+                                </iframe>
+                            </template>
                         </div>
                     </div>
                 </section>
@@ -139,8 +146,8 @@
                 
                 {
                     name: 'point mandala.mp4',
-                    type: 'video',
-                    content: 'https://drive.google.com/uc?export=download&id=1k_YsIOYG6AYre1VUyBNP4sRkAgUkvrHw' // Placeholder video
+                    type: 'gdrive',
+                    content: 'https://drive.google.com/file/d/1k_YsIOYG6AYre1VUyBNP4sRkAgUkvrHw/preview' // Placeholder video
                 },
 
 
