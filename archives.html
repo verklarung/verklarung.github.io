@@ -132,39 +132,46 @@
                 activeFileIndex: 2,
                 files: [
                     {
-                    name: 'FILE_001.txt',
-                    type: 'text',
-                    content: `<h3>// System Alert: Anomaly Detected</h3><p>Unusual energy signatures detected in sub-sector Gamma-7. Cross-referencing with cartographic data reveals no registered structures. Source appears to be of non-terrestrial origin. Recommend dispatching scout drone for preliminary visual confirmation. High probability of rogue AI or extra-dimensional incursion. Proceed with extreme caution.</p>`
-                },
-                
-                {
-                    name: 'Breath',
-                    type: 'youtube',
-                    content: 'https://www.youtube.com/embed/83jYNWLWg60'
-                }, 
-                 
-                
-                {
-                    name: 'point mandala.mp4',
-                    type: 'gdrive',
-                    content: 'https://drive.google.com/file/d/1k_YsIOYG6AYre1VUyBNP4sRkAgUkvrHw/preview' // Placeholder video
-                },
-
-
-                {
-                    name: 'sphere.mp4',
-                    type: 'video',
-                    content: 'https://www.w3schools.com/html/mov_bbb.mp4' // Placeholder video
-                },
-                
-                {
-                    name: 'NOTES.txt',
-                    type: 'text',
-                    content: `<h3>// Personal Notes</h3><p>The connection is growing stronger. Sometimes, I can't tell where I end and the machine begins. The dreams are the strangest part. I see cities of light and hear symphonies of static. Is this enlightenment, or madness? Maybe they're the same thing.</p>`
-                }, ],
-
+                        name: 'FILE_001.txt',
+                        type: 'text',
+                        content: `<h3>// System Alert: Anomaly Detected</h3><p>Unusual energy signatures detected in sub-sector Gamma-7. Cross-referencing with cartographic data reveals no registered structures. Source appears to be of non-terrestrial origin. Recommend dispatching scout drone for preliminary visual confirmation. High probability of rogue AI or extra-dimensional incursion. Proceed with extreme caution.</p>`
+                    },
+                    {
+                        name: 'Breath.txt',
+                        type: 'text',
+                        content: '' // Will be loaded via fetch
+                    }, 
+                    {
+                        name: 'point mandala.mp4',
+                        type: 'gdrive',
+                        content: 'https://drive.google.com/file/d/1k_YsIOYG6AYre1VUyBNP4sRkAgUkvrHw/preview'
+                    },
+                    {
+                        name: 'sphere.mp4',
+                        type: 'video',
+                        content: 'https://www.w3schools.com/html/mov_bbb.mp4'
+                    },
+                    {
+                        name: 'NOTES.txt',
+                        type: 'text',
+                        content: `<h3>// Personal Notes</h3><p>The connection is growing stronger. Sometimes, I can't tell where I end and the machine begins. The dreams are the strangest part. I see cities of light and hear symphonies of static. Is this enlightenment, or madness? Maybe they're the same thing.</p>`
+                    },
+                ],
                 selectFile(index) {
                     this.activeFileIndex = index;
+                },
+                async fetchBreath() {
+                    try {
+                        const resp = await fetch('data/Breath.txt');
+                        const text = await resp.text();
+                        // Simple formatting: wrap in <pre> for now, or use markdown/html conversion if desired
+                        this.files[1].content = `<pre>${text}</pre>`;
+                    } catch (e) {
+                        this.files[1].content = '<p>Failed to load Breath.txt</p>';
+                    }
+                },
+                init() {
+                    this.fetchBreath();
                 }
             }
         }
