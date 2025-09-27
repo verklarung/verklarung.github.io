@@ -141,6 +141,11 @@
             return {
                 activeFileIndex: 0,
                 files: [
+                    {
+                        name:'welcome.txt',
+                        type: 'text',
+                        content: 'Welcome to the Archives. Select a file from the list to view its content here.'
+                    },
                     // Dynamically add all txt files as type 'text'
                     ...txtFiles.map(name => ({
                         name: name.replace('.txt', ''), // Display without .txt
