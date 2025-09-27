@@ -115,6 +115,7 @@ My stories adorn such tunnels with the blood of the new world.
                         <h2 class="text-xl font-bold uppercase tracking-widest text-glow mb-2">[ Open_Channel ]</h2>
                         <p class="text-xs uppercase tracking-[0.15em] text-[var(--primary-color)]/70 mb-6">// Initiate Secure Contact Protocol</p>
                         <form 
+                            id="contactForm"
                             action="https://formspree.io/f/xnngjzqz" 
                             method="POST" 
                             class="space-y-4"
@@ -133,6 +134,7 @@ My stories adorn such tunnels with the blood of the new world.
                                 </button>
                             </div>
                         </form>
+                        <div id="formFeedback" class="mt-4 text-sm text-[var(--primary-color)]/80"></div>
                     </div>
                 </section>
             </div>
@@ -147,4 +149,37 @@ My stories adorn such tunnels with the blood of the new world.
         </footer>
     </div>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const feedback = document.getElementById('formFeedback');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            feedback.textContent = "Transmitting...";
+            const data = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    feedback.textContent = "Message transmitted successfully!";
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        feedback.textContent = data.error || "Transmission failed. Please try again.";
+                    });
+                }
+            })
+            .catch(() => {
+                feedback.textContent = "Transmission failed. Please try again.";
+            });
+        });
+    }
+});
+</script>
 </html>
