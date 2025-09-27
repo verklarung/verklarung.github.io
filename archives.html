@@ -137,9 +137,14 @@
                         content: `<h3>// System Alert: Anomaly Detected</h3><p>Unusual energy signatures detected in sub-sector Gamma-7. Cross-referencing with cartographic data reveals no registered structures. Source appears to be of non-terrestrial origin. Recommend dispatching scout drone for preliminary visual confirmation. High probability of rogue AI or extra-dimensional incursion. Proceed with extreme caution.</p>`
                     },
                     {
+                        name:'Breath.mp4',
+                        type: 'youtube',
+                        content: 'https://www.youtube.com/embed/83jYNWLWg60'
+                    },
+                    {
                         name: 'Breath.txt',
                         type: 'text',
-                        content: 'Breath.txt' // Will be loaded via fetch
+                        content: `<pre>Loading...</pre>`
                     }, 
                     {
                         name: 'point mandala.mp4',
@@ -159,19 +164,22 @@
                 ],
                 selectFile(index) {
                     this.activeFileIndex = index;
+                    // Fetch Breath.txt only when selected
+                    if (this.files[index].name === 'Breath.txt') {
+                        this.fetchBreath();
+                    }
                 },
                 async fetchBreath() {
                     try {
                         const resp = await fetch('data/Breath.txt');
                         const text = await resp.text();
-                        // Simple formatting: wrap in <pre> for now, or use markdown/html conversion if desired
-                        this.files[1].content = `<pre>${text}</pre>`;
+                        this.files[2].content = `<pre>${text}</pre>`;
                     } catch (e) {
-                        this.files[1].content = '<p>Failed to load Breath.txt</p>';
+                        this.files[2].content = '<p>Failed to load Breath.txt</p>';
                     }
                 },
                 init() {
-                    this.fetchBreath();
+                    // Optionally fetch on load, or leave as loading until selected
                 }
             }
         }
