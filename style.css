@@ -16,7 +16,7 @@ body {
     font-family: 'Roboto Mono', monospace;
     background-color: var(--background-dark);
     color: var(--text-color);
-    overflow: hidden;
+    overflow-x: hidden; /* Only hide horizontal overflow */
 }
 
 /* =========================
