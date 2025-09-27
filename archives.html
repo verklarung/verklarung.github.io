@@ -169,14 +169,18 @@
                         this.fetchTxtFile(index);
                     }
                 },
-                async fetchTxtFile(index) {
-                    const filename = txtFiles[index];
+                async fetchTxtFile(txtIndex) {
+                    const filename = txtFiles[txtIndex];
+                    if (!filename) {
+                        this.files[this.activeFileIndex].content = `<p>File not found.</p>`;
+                        return;
+                    }
                     try {
                         const resp = await fetch('data/' + filename);
                         const text = await resp.text();
-                        this.files[index].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
+                        this.files[this.activeFileIndex].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
                     } catch (e) {
-                        this.files[index].content = `<p>Failed to load ${filename}</p>`;
+                        this.files[this.activeFileIndex].content = `<p>Failed to load ${filename}</p>`;
                     }
                 },
                 init() {}
