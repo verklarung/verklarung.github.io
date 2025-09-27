@@ -179,12 +179,7 @@
                         this.files[index].content = `<p>Failed to load ${filename}</p>`;
                     }
                 },
-                init() {
-                    // Load the first file on page load
-                    if (this.files.length > 0 && this.files[0].type === 'text') {
-                        this.fetchTxtFile(0);
-                    }
-                }
+                init()
             }
         }
     </script>
