@@ -83,8 +83,9 @@
                         <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4" x-text="`// VIEWPORT [${files[activeFileIndex].name}]`"></h2>
                         <div class="flex-grow bg-[var(--background-dark)]/60 border border-[var(--border-color)] overflow-y-auto overflow-x-hidden rounded">
                             <template x-if="files[activeFileIndex].type === 'text'">
-                                <div class="p-4 overflow-y-auto scrollbar h-full">
-                                    <div class="prose prose-sm max-w-none text-[var(--text-color)] prose-headings:text-[var(--primary-color)]" x-html="files[activeFileIndex].content"></div>
+                                <div class="p-4 h-[40vh] overflow-y-auto scrollbar">
+                                    <div class="prose prose-sm max-w-none text-[var(--text-color)] prose-headings:text-[var(--primary-color)]"
+                                         x-html="files[activeFileIndex].content"></div>
                                 </div>
                             </template>
                             <template x-if="files[activeFileIndex].type === 'video'">
@@ -144,7 +145,8 @@
                     {
                         name: 'Breath.txt',
                         type: 'text',
-                        content: `<pre>Loading...</pre>`
+                        // Use a div with class for wrapping and vertical scroll
+                        content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
                     }, 
                     {
                         name: 'point mandala.mp4',
@@ -163,7 +165,8 @@
                     try {
                         const resp = await fetch('data/Breath.txt');
                         const text = await resp.text();
-                        this.files[2].content = `<pre>${text}</pre>`;
+                        // Wrap the loaded text in a div for wrapping and vertical scroll
+                        this.files[2].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
                     } catch (e) {
                         this.files[2].content = '<p>Failed to load Breath.txt</p>';
                     }
