@@ -160,7 +160,6 @@
                 ],
                 selectFile(index) {
                     this.activeFileIndex = index;
-                    // If it's a text file, fetch from /data/
                     if (this.files[index].type === 'text') {
                         this.fetchTxtFile(index);
                     }
@@ -176,7 +175,10 @@
                     }
                 },
                 init() {
-                    // Optionally fetch on load, or leave as loading until selected
+                    // Load the first file on page load
+                    if (this.files.length > 0 && this.files[0].type === 'text') {
+                        this.fetchTxtFile(0);
+                    }
                 }
             }
         }
