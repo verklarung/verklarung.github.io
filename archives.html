@@ -45,9 +45,14 @@
                     <a class="nav-link text-lg" href="esotecha.html">Esotecha</a>
                     <a class="nav-link text-lg" href="meta.html">Meta</a>
                 </nav>
-                <button aria-label="Open menu" class="md:hidden text-2xl nav-link">
+                <button aria-label="Open menu" class="md:hidden text-2xl nav-link" @click="showMenu = !showMenu">
                     [menu]
                 </button>
+                <nav x-show="showMenu" class="flex flex-col space-y-4 md:hidden">
+                    <a class="nav-link text-lg" href="archives.html">Archives</a>
+                    <a class="nav-link text-lg" href="esotecha.html">Esotecha</a>
+                    <a class="nav-link text-lg" href="meta.html">Meta</a>
+                </nav>
             </div>
         </header>
 
@@ -59,7 +64,7 @@
                 <!-- File List -->
                 <section class="md:col-span-1 flex flex-col">
                     <div class="border-2 border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80">
-                        <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4">// MEDIA_FILES</h2>
+                        <h2 class="text-lg md:text-xl font-bold text-[var(--primary-color)] mb-4">// MEDIA_FILES</h2>
                         <ul class="flex-grow space-y-2 overflow-y-auto scrollbar pr-2">
                             <template :key="index" x-for="(file, index) in files">
                                 <li>
@@ -80,8 +85,9 @@
                 <!-- Viewport -->
                 <section class="md:col-span-3 flex flex-col">
                     <div class="border-2 border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80 flex-grow flex flex-col">
-                        <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4" x-text="`// VIEWPORT [${files[activeFileIndex].name}]`"></h2>
-                        <div class="flex-grow bg-black border border-[var(--border-color)] overflow-y-auto overflow-x-hidden rounded scrollbar" style="max-height: 60vh;">
+                        <h2 class="text-lg md:text-xl font-bold text-[var(--primary-color)] mb-4" x-text="`// VIEWPORT [${files[activeFileIndex].name}]`"></h2>
+                        <div class="flex-grow bg-black border border-[var(--border-color)] overflow-y-auto overflow-x-hidden rounded scrollbar"
+                             style="max-height: 60vh; min-height: 200px;">
                             <template x-if="files[activeFileIndex].type === 'text'">
                                 <div class="p-4">
                                     <div class="prose prose-sm max-w-none text-[var(--text-color)] prose-headings:text-[var(--primary-color)]"
