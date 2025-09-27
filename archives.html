@@ -147,7 +147,7 @@
                     ...txtFiles.map(name => ({
                         name: name.replace('.txt', ''),
                         type: 'text',
-                        content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
+                        content: `<div style="white-space: pre-wrap; word-break: break-word;">Loading...</div>`
                     })),
                     {
                         name:'Breath.mp4',
@@ -176,7 +176,7 @@
                     try {
                         const resp = await fetch('data/' + filename);
                         const text = await resp.text();
-                        this.files[this.activeFileIndex].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
+                        this.files[this.activeFileIndex].content = `<div style="white-space: pre-wrap; word-break: break-word;">${text}</div>`;
                     } catch (e) {
                         this.files[this.activeFileIndex].content = `<p>Failed to load ${filename}</p>`;
                     }
