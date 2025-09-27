@@ -83,7 +83,7 @@
                         <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4" x-text="`// VIEWPORT [${files[activeFileIndex].name}]`"></h2>
                         <div class="flex-grow bg-black border border-[var(--border-color)] overflow-y-auto overflow-x-hidden rounded scrollbar">
                             <template x-if="files[activeFileIndex].type === 'text'">
-                                <div class="p-4 h-full">
+                                <div class="p-4">
                                     <div class="prose prose-sm max-w-none text-[var(--text-color)] prose-headings:text-[var(--primary-color)]"
                                          x-html="files[activeFileIndex].content"></div>
                                 </div>
