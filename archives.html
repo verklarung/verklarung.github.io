@@ -129,14 +129,12 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         function mediaViewer() {
-            // List all .txt files you want to be viewable here
             const txtFiles = [
                 'Breath.txt',
                 'INFOHAZARD.txt',
                 'Liminal.txt',
                 'Metamorphic.txt',
                 'Ephemeris.txt'
-                // Add more .txt filenames here as needed
             ];
             return {
                 activeFileIndex: 0,
@@ -146,9 +144,8 @@
                         type: 'text',
                         content: 'Welcome to the Archives. Select a file from the list to view its content here.'
                     },
-                    // Dynamically add all txt files as type 'text'
                     ...txtFiles.map(name => ({
-                        name: name.replace('.txt', ''), // Display without .txt
+                        name: name.replace('.txt', ''),
                         type: 'text',
                         content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
                     })),
@@ -165,8 +162,9 @@
                 ],
                 selectFile(index) {
                     this.activeFileIndex = index;
-                    if (this.files[index].type === 'text') {
-                        this.fetchTxtFile(index);
+                    // Only fetch if it's a text file and not the welcome message
+                    if (this.files[index].type === 'text' && index > 0) {
+                        this.fetchTxtFile(index - 1);
                     }
                 },
                 async fetchTxtFile(txtIndex) {
