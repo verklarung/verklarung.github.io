@@ -167,16 +167,16 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if (response.ok) {
-                    feedback.textContent = "Message transmitted successfully!";
+                    feedback.textContent = "Transmission successful.";
                     form.reset();
                 } else {
                     response.json().then(data => {
-                        feedback.textContent = data.error || "Transmission failed. Please try again.";
+                        feedback.textContent = data.error || "Transmission failed. Try again.";
                     });
                 }
             })
             .catch(() => {
-                feedback.textContent = "Transmission failed. Please try again.";
+                feedback.textContent = "Transmission failed. Try again.";
             });
         });
     }
