@@ -69,7 +69,7 @@
                                     }"
                                     @click="selectFile(index)"
                                     class="w-full text-left p-2 transition-colors flex items-center rounded">
-                                        <span class="material-icons text-[var(--primary-color)] mr-2 text-base" x-text="file.type === 'text' ? 'txt' : 'codec'"></span>
+                                        <span class="material-icons text-[var(--primary-color)] mr-2 text-base" x-text="file.type === 'text' ? 'transcript' : 'codec'"></span>
                                         <span x-text="file.name"></span>
                                     </button>
                                 </li>
@@ -143,11 +143,15 @@
                         content: 'https://www.youtube.com/embed/83jYNWLWg60'
                     },
                     {
-                        name: 'Breath.txt',
+                        name: 'Breath',
                         type: 'text',
-                        // Use a div with class for wrapping and vertical scroll
                         content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
-                    }, 
+                    },
+                    {
+                        name: 'INFOHAZARD',
+                        type: 'text',
+                        content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
+                    },
                     {
                         name: 'point mandala.mp4',
                         type: 'gdrive',
@@ -157,8 +161,11 @@
                 selectFile(index) {
                     this.activeFileIndex = index;
                     // Fetch Breath.txt only when selected
-                    if (this.files[index].name === 'Breath.txt') {
+                    if (this.files[index].name === 'Breath') {
                         this.fetchBreath();
+                    }
+                    if (this.files[index].name === 'INFOHAZARD') {
+                        this.fetchINFOHAZARD();
                     }
                 },
                 async fetchBreath() {
@@ -168,7 +175,17 @@
                         // Wrap the loaded text in a div for wrapping and vertical scroll
                         this.files[2].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
                     } catch (e) {
-                        this.files[2].content = '<p>Failed to load Breath.txt</p>';
+                        this.files[2].content = '<p>Failed to Breathe</p>';
+                    }
+                },
+                async fetchINFOHAZARD() {
+                    try {
+                        const resp = await fetch('data/INFOHAZARD.txt');
+                        const text = await resp.text();
+                        // Wrap the loaded text in a div for wrapping and vertical scroll
+                        this.files[3].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
+                    } catch (e) {
+                        this.files[3].content = '<p>Failed to load INFOHAZARD</p>';
                     }
                 },
                 init() {
