@@ -83,22 +83,22 @@
                         <div class="space-y-4 text-sm leading-relaxed text-[var(--primary-color)]/90">
                             <p>id: Verk</p>
                             <p>location: Sirius</p>
-                            <p> occupation: Soothsayer</p>
-                            <p> affiliation: Tribolumin Protocols</p>
-                            <p> contact: tribolumin@proton.me</p>
-                            <p>
-                                I tell stories.
+                            <p>occupation: Soothsayer</p>
+                            <p>affiliation: Tribolumin Protocols</p>
+                            <p>contact: tribolumin@proton.me</p>
+                            <p> I tell stories.
 The first stories were cut into clay and stone. 
 Now we inscribe meaning on electromagnetic fields.
                             </p>
-                            <p>
-I revere the ancients, but I write for the coming generation.
+
+                            <p>I revere the ancients, but I write for the coming generation.
 New tools, new stories and new art.</p>
-                            <p>
-We are immersed in our tech-sculpted reality tunnels.
-My stories adorn such tunnels with the blood of the new world.</p>
-                            <p>
-Immerse yourself.
+
+                            <p>We are immersed in our tech-sculpted reality tunnels.
+My stories adorn such tunnels with the blood of the new world.
+                            </p>
+
+                            <p>Immerse yourself.
                             </p>
                         </div>
                     </div>
@@ -114,13 +114,18 @@ Immerse yourself.
                         <div class="corner-decal bottom-right"></div>
                         <h2 class="text-xl font-bold uppercase tracking-widest text-glow mb-2">[ Open_Channel ]</h2>
                         <p class="text-xs uppercase tracking-[0.15em] text-[var(--primary-color)]/70 mb-6">// Initiate Secure Contact Protocol</p>
-                        <form class="space-y-4">
+                        <form 
+                            action="https://formspree.io/f/xnngjzqz" 
+                            method="POST" 
+                            class="space-y-4"
+                        >
+
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" placeholder="//CALLSIGN" required/>
-                                <input type="email" placeholder="//ADDRESS" required/>
+                                <input type="text" name="callsign" placeholder="//CALLSIGN" required/>
+                                <input type="email" name="email" placeholder="//ADDRESS" required/>
                             </div>
                             <div>
-                                <textarea rows="5" placeholder="//MESSAGE_PAYLOAD" required></textarea>
+                                <textarea rows="5" name="message" placeholder="//MESSAGE_PAYLOAD" required></textarea>
                             </div>
                             <div>
                                 <button type="submit" class="block w-full p-3 border-2 border-[var(--primary-color)] text-center hover:bg-[var(--primary-color)] hover:text-[var(--background-dark)] transition-all font-bold tracking-widest text-sm border-glow">
