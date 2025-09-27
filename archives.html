@@ -81,7 +81,7 @@
                 <section class="md:col-span-3 flex flex-col">
                     <div class="border-2 border-[var(--primary-color)] p-6 bg-[var(--background-dark)]/80 flex-grow flex flex-col">
                         <h2 class="text-lg font-bold text-[var(--primary-color)] mb-4" x-text="`// VIEWPORT [${files[activeFileIndex].name}]`"></h2>
-                        <div class="flex-grow bg-[var(--background-dark)]/60 border border-[var(--border-color)] overflow-hidden rounded">
+                        <div class="flex-grow bg-[var(--background-dark)]/60 border border-[var(--border-color)] overflow-y-auto overflow-x-hidden rounded">
                             <template x-if="files[activeFileIndex].type === 'text'">
                                 <div class="p-4 overflow-y-auto scrollbar h-full">
                                     <div class="prose prose-sm max-w-none text-[var(--text-color)] prose-headings:text-[var(--primary-color)]" x-html="files[activeFileIndex].content"></div>
