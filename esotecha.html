@@ -60,7 +60,27 @@
                 <circle class="shape inner-circle" cx="50" cy="50" r="28.9"></circle>
             </svg>
         </div>
+        <main class="relative z-10 flex flex-col items-center justify-center text-center">
+            <div class="relative flex flex-col items-center justify-center">
+                <button id="revealEsotechaBtn" class="enter-button border-2 px-8 py-3 text-lg font-bold uppercase tracking-[0.3em] mb-4">
+                    Access Esotecha
+                </button>
+                <div id="esotechaError"
+                    class="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-sm font-bold"
+                    style="display:none; color:#8B0000; padding:0.5em 1em; border-radius:1px; max-width:400px; min-width:320px; text-align:center;">
+                    <!-- Error message will appear here -->
+                </div>
+            </div>
+        </main>
     </div>
+
+    <script>
+        document.getElementById('revealEsotechaBtn').addEventListener('click', function() {
+            var errorDiv = document.getElementById('esotechaError');
+            errorDiv.textContent = "Access revoked - Communicate with sysAdmin";
+            errorDiv.style.display = "block";
+        });
+    </script>
 
 </body>
 </html>
