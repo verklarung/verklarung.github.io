@@ -129,28 +129,28 @@
     <script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <script>
         function mediaViewer() {
+            // List all .txt files you want to be viewable here
+            const txtFiles = [
+                'Breath.txt',
+                'INFOHAZARD.txt',
+                'Liminal.txt',
+                'Metamorphic.txt',
+                'Ephemeris.txt'
+                // Add more .txt filenames here as needed
+            ];
             return {
                 activeFileIndex: 0,
                 files: [
-                    {
-                        name: 'FILE_001.txt',
+                    // Dynamically add all txt files as type 'text'
+                    ...txtFiles.map(name => ({
+                        name: name.replace('.txt', ''), // Display without .txt
                         type: 'text',
-                        content: `<h3>// System Alert: Anomaly Detected</h3><p>Unusual energy signatures detected in sub-sector Gamma-7. Cross-referencing with cartographic data reveals no registered structures. Source appears to be of non-terrestrial origin. Recommend dispatching scout drone for preliminary visual confirmation. High probability of rogue AI or extra-dimensional incursion. Proceed with extreme caution.</p>`
-                    },
+                        content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
+                    })),
                     {
                         name:'Breath.mp4',
                         type: 'youtube',
                         content: 'https://www.youtube.com/embed/83jYNWLWg60'
-                    },
-                    {
-                        name: 'Breath',
-                        type: 'text',
-                        content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
-                    },
-                    {
-                        name: 'INFOHAZARD',
-                        type: 'text',
-                        content: `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">Loading...</div>`
                     },
                     {
                         name: 'point mandala.mp4',
@@ -160,32 +160,19 @@
                 ],
                 selectFile(index) {
                     this.activeFileIndex = index;
-                    // Fetch Breath.txt only when selected
-                    if (this.files[index].name === 'Breath') {
-                        this.fetchBreath();
-                    }
-                    if (this.files[index].name === 'INFOHAZARD') {
-                        this.fetchINFOHAZARD();
+                    // If it's a text file, fetch from /data/
+                    if (this.files[index].type === 'text') {
+                        this.fetchTxtFile(index);
                     }
                 },
-                async fetchBreath() {
+                async fetchTxtFile(index) {
+                    const filename = txtFiles[index];
                     try {
-                        const resp = await fetch('data/Breath.txt');
+                        const resp = await fetch('data/' + filename);
                         const text = await resp.text();
-                        // Wrap the loaded text in a div for wrapping and vertical scroll
-                        this.files[2].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
+                        this.files[index].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
                     } catch (e) {
-                        this.files[2].content = '<p>Failed to Breathe</p>';
-                    }
-                },
-                async fetchINFOHAZARD() {
-                    try {
-                        const resp = await fetch('data/INFOHAZARD.txt');
-                        const text = await resp.text();
-                        // Wrap the loaded text in a div for wrapping and vertical scroll
-                        this.files[3].content = `<div style="white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto;">${text}</div>`;
-                    } catch (e) {
-                        this.files[3].content = '<p>Failed to load INFOHAZARD</p>';
+                        this.files[index].content = `<p>Failed to load ${filename}</p>`;
                     }
                 },
                 init() {
